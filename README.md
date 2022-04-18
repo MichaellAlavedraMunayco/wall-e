@@ -79,5 +79,5 @@ erDiagram
     DEVICE ||--|| LOCATION : "-"
     DEVICE ||--|| PREFERENCE : "-"
     DEVICE ||--|| WORKSPACE : "-"
-    WORKSPACE ||--|| ADMIN : "-"
+    WORKSPACE ||--|| ADMIN : "--"
 ```
