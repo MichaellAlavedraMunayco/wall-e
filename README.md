@@ -1,6 +1,6 @@
 <!--
 Created: Mon Apr 18 2022 10:28:44 GMT-0400 (hora de Bolivia)
-Modified: Mon Apr 18 2022 10:28:44 GMT-0400 (hora de Bolivia)
+Modified: Mon Apr 18 2022 18:33:38 GMT-0400 (hora de Bolivia)
 -->
 
 # Wall-E
@@ -21,7 +21,7 @@ erDiagram
       string locationId
       string preferenceId
       string workspaceIdList
-    }    
+    }
     
     LOCATION {
       string id
@@ -36,7 +36,7 @@ erDiagram
       string language
       string dateFormat
       string timeFormat
-      string uiTheme
+      string theme
     }
     
     WORKSPACE {
@@ -61,9 +61,23 @@ erDiagram
       string workspaceId
     }
     
-    CATEGORY { }
+    CATEGORY {
+      string id
+      string name
+      string color
+      string createdAt
+      string updatedAt
+      string totalId
+    }
     
-    PROVIDER { }
+    PROVIDER { 
+      string id
+      string icon
+      string name
+      string createdAt
+      string updatedAt
+      string totalId
+    }
     
     PRODUCT { }
     
@@ -73,11 +87,16 @@ erDiagram
       string id
       string concept
       string type
-      string total
       string createdAt
       string updatedAt
+      string totalId
       string categoryId
       string providerId
+    }
+
+    TOTAL {
+      number value
+      string type
       string currencyId
     }
     
