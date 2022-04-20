@@ -18,9 +18,6 @@ erDiagram
       string browser
       string ip
       string mac
-      string locationId
-      string preferenceId
-      string workspaceIdList
     }
     
     LOCATION {
@@ -29,6 +26,7 @@ erDiagram
       string longitude
       string country
       string city
+      string deviceId
     }
     
     PREFERENCE {
@@ -37,20 +35,24 @@ erDiagram
       string dateFormat
       string timeFormat
       string theme
+      string deviceId
     }
     
     WORKSPACE {
       string id
       string name
-      string adminId
       string createdAt
       string updatedAt
+      string adminId
+      string deviceId
     }
     
     ADMIN {
       string id
-      string fullname
+      string name
+      string lastname
       string email
+      string deviceId
     }
     
     CURRENCY {
@@ -58,7 +60,7 @@ erDiagram
       string symbol
       string code
       string name
-      string workspaceId
+      string adminId
     }
     
     CATEGORY {
@@ -68,40 +70,98 @@ erDiagram
       string createdAt
       string updatedAt
       string totalId
+      string workspaceId
     }
     
-    PROVIDER { 
+    PROVIDER {
       string id
-      string icon
       string name
       string createdAt
       string updatedAt
       string totalId
+      string workspaceId
     }
     
-    PRODUCT { }
+    PRODUCT {
+      string id
+      string name
+      number cost
+      number margin
+      number price
+      boolean perishable
+      string createdAt
+      string updatedAt
+      string workspaceId
+    }
     
-    INVENTORY { }
+    INVENTORY {
+      string id
+      number stock
+      number suggest
+      string createdAt
+      string updatedAt
+      string productId
+    }
     
     TRANSACT { 
       string id
       string concept
       string type
+      number quantity
       string createdAt
       string updatedAt
       string totalId
+      string productIdList
       string categoryId
       string providerId
+      string workspaceId
     }
 
     TOTAL {
+      string id
       number value
       string type
       string currencyId
+      string workspaceId
+    }
+    
+    IMAGE {
+      string id
+      string source      
+      string width
+      string height
+      string aspect
+      string ownerId
+      string workspaceId
     }
     
     DEVICE ||--|| LOCATION : "-"
     DEVICE ||--|| PREFERENCE : "-"
-    DEVICE ||--|| WORKSPACE : "-"
-    WORKSPACE ||--|| ADMIN : "--"
+    DEVICE ||--|{ WORKSPACE : "-"
+    DEVICE ||--|| ADMIN : "-"
+    
+    ADMIN ||--|{ WORKSPACE : "-"
+    ADMIN ||--|{ CURRENCY : "-"
+    
+    WORKSPACE ||--|{ CATEGORY : "-"
+    WORKSPACE ||--|{ TRANSACT : "-"
+    WORKSPACE ||--|{ PROVIDER : "-"
+    WORKSPACE ||--|{ PRODUCT : "-"
+    WORKSPACE ||--|{ TOTAL : "-"
+    WORKSPACE ||--|{ IMAGE : "-"
+    
+    CATEGORY ||--|| TOTAL : "-"
+    
+    PROVIDER ||--|| TOTAL : "-"
+    PROVIDER ||--|{ IMAGE : "-"
+    
+    PRODUCT ||--|{ INVENTORY : "-"
+    PRODUCT ||--|{ IMAGE : "-"
+    
+    TRANSACT }|--|{ PRODUCT : "-"
+    TRANSACT ||--|| CATEGORY : "-"
+    TRANSACT ||--|| PROVIDER : "-"
+    TRANSACT ||--|| TOTAL : "-"
+    
+    TOTAL ||--|| CURRENCY : "-"
 ```
